@@ -17,17 +17,6 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-
   createdAt: {
     type: Date,
     default: Date.now,
@@ -73,7 +62,6 @@ const DeliveryPartnerSchema = new mongoose.Schema({
 });
 
 //*Admin Schema
-
 const AdminSchema = new mongoose.Schema({
   ...UserSchema.obj,
   email: { type: String, required: true, unique: true },
