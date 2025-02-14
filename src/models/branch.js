@@ -8,7 +8,7 @@ const BranchSchema = new Schema({
     latitude: { type: Number },
     longitude: { type: Number },
   },
-  address: { tyoe: String },
+  address: { type: String },
   deliveryPartner: [
     {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,8 +1,10 @@
 import "dotenv/config";
 import fastify from "fastify";
 import fastifySocketIO from "fastify-socket.io";
+import mongoose from "mongoose";
 import { PORT } from "./src/config/config.js";
 import { connectDB } from "./src/config/connect.js";
+import { admin, buildAdminRouter } from "./src/config/setup.js";
 import { registerRoutes } from "./src/routes/index.js";
 
 const start = async () => {
@@ -17,12 +19,17 @@ const start = async () => {
     transports: ["websocket"],
   });
 
+  console.log("Mongoose Connection Status:🚀", mongoose.connection.readyState);
+
   await registerRoutes(app);
+  await buildAdminRouter(app);
   app.listen({ port: PORT, host: "0.0.0.0" }, (err, addr) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(`Grocery App Server running on http://localhost:${PORT}`);
+      console.log(
+        `Grocery App Server running on http://localhost:${PORT}${admin.options.rootPath}`
+      );
     }
   });
 
