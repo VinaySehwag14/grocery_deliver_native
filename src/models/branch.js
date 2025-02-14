@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 
 const BranchSchema = new Schema({
   name: { type: String, required: true },
+
   location: {
     latitude: { type: Number },
     longitude: { type: Number },
   },
-  address: { tyoe: String },
+
+  address: { type: String },
   deliveryPartner: [
     {
       type: mongoose.Schema.Types.ObjectId,
